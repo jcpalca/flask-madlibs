@@ -10,11 +10,14 @@ debug = DebugToolbarExtension(app)
 
 @app.get("/questions")
 def questions():
+    """Show form with type of word inputs"""
     word_types = story.prompts
     return render_template("questions.html", word_types = word_types)
 
 @app.get("/results")
+# @app.post("/results")
 def results():
+    """Show full Madlibs story"""
     full_story = story.generate(request.args)
+    # full_story = story.generate(request.form)
     return render_template("results.html", full_story = full_story)
-
